@@ -14,7 +14,7 @@ wget https://www.dropbox.com/s/3nfpm0q0okszqfp/get-scripts.sh
 . ./getscripts.sh
 ```
 
-3. Встановіть докер за допомогою команди
+3. Встановіть докер за допомогою команди (буде питати пароль від поточної машини при встановленні)
 ```
 . ./docker-install.sh
 ```
@@ -57,7 +57,7 @@ wget https://www.dropbox.com/s/3nfpm0q0okszqfp/get-scripts.sh
 . ./getscripts.sh
 ```
 
-3. Install docker
+3. Install docker (It will ask sudo password for VM)
 ```
 . ./docker-install.sh
 ```
