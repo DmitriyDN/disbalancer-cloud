@@ -1,4 +1,4 @@
-
+[Інструкція по запуску машин на Ажурі](https://dou.ua/forums/topic/36795)
 
 Це протестовано на Ubuntu (Linux)
 ## Instructions for Linux 
@@ -42,6 +42,7 @@ SHELL=/bin/bash
 ```
 __________________________________________________________________________________________
 
+[Launch VMs on Azure manual](https://dou.ua/forums/topic/36795)
 It is better to use it for linux (for any cloud Linux/Ubuntu VM)
 ## Instructions for Linux 
 
