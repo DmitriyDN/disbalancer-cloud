@@ -34,7 +34,7 @@ crontab -e
 * Оберіть редактор конфігу
 * Вставте поточну команду на початку конфіг файлу
 ```
-```SHELL=/bin/bash
+SHELL=/bin/bash
 ```
 * Вставте команду вкінець конфіг файлу (для перевірки імеджів кожної хвилини)
 ```
@@ -76,7 +76,7 @@ crontab -e
 * select editor to modify cron config
 * Put following command in the beginning
 ```
-```SHELL=/bin/bash
+SHELL=/bin/bash
 ```
 * Put following command at the end of the file
 ```
