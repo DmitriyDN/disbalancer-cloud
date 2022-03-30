@@ -26,16 +26,16 @@ wget https://www.dropbox.com/s/cmkhfenoepmici0/check-restart.sh
 touch check.log
 
 ## Download disbalancer and build docker image
-wget https://www.dropbox.com/s/xcw5fchsd8jne4m/launcher-disbalancer-docker-x64.zip
+wget https://www.dropbox.com/s/4jsfde41t4kekko/launcher-disbalancer-docker-x64.zip
 unzip ./launcher-disbalancer-docker-x64.zip
 rm -rf ./__MACOSX
 cd ./launcher-disbalancer-docker-x64
-docker build -t launcher-disbalancer:0.0.6 .
+docker build -t launcher-disbalancer:0.0.7 .
 
-docker run --name disbalancer-1 -d launcher-disbalancer:0.0.6
-docker run --name disbalancer-2 -d launcher-disbalancer:0.0.6
-docker run --name disbalancer-3 -d launcher-disbalancer:0.0.6
-docker run --name disbalancer-4 -d launcher-disbalancer:0.0.6
+docker run --name disbalancer-1 -d launcher-disbalancer:0.0.7
+docker run --name disbalancer-2 -d launcher-disbalancer:0.0.7
+docker run --name disbalancer-3 -d launcher-disbalancer:0.0.7
+docker run --name disbalancer-4 -d launcher-disbalancer:0.0.7
 
 echo "Set up cron with following"
 echo "Run 'crontab -e'"
