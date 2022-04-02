@@ -1,85 +1,56 @@
+Ажур дає $200 на перший місяць, тож можна запустити до 10 віртуальних машин.
 [Інструкція по запуску машин на Ажурі](https://dou.ua/forums/topic/36795)
 
-Це протестовано на Ubuntu (Linux)
-## Instructions for Linux 
+Раджу використовувати машини в різних регіонах. З характеристиками до 2Гб оперативи. Можна знайти варіанти $15-$22 за машину.
 
-1. Виконайте цю команду в терміналі, щоб заванажити файл для  решти необхідних скриптів
+### Після створення машини треба на неї зайти за допомогою команди
 
-```
-wget https://www.dropbox.com/s/3nfpm0q0okszqfp/get-scripts.sh 
-```
-
-2. Ця команда завантажить всі необхідні скрипти
-```
-. ./getscripts.sh
-```
-
-3. Встановіть докер за допомогою команди (буде питати пароль від поточної машини при встановленні)
-```
-. ./docker-install.sh
-```
-
-4. Встановити дісбалансер та допоміжні скрипти
-```
-. ./disbalancer-install.sh
-```
-
-5. Виставте крон джобу (перевіряє чи докер імеджі актвині, якщо ні - перезапускає їх)
-
-* Відкрийте crontab за допомогою команди
-```
-crontab -e
-```
-
-* Оберіть редактор конфігу
-* Вставте поточну команду на початку конфіг файлу
-```
-SHELL=/bin/bash
-```
-* Вставте команду вкінець конфіг файлу (для перевірки імеджів кожної хвилини)
-```
-* * * * * /home/$(whoami)/check-restart.sh >> /home/$(whoami)/cron.log 2>&1
-```
-__________________________________________________________________________________________
-
-[Launch VMs on Azure manual](https://dou.ua/forums/topic/36795)
-It is better to use it for linux (for any cloud Linux/Ubuntu VM)
-## Instructions for Linux 
-
-1. Run following command to download helper scripts
+Простіше створювати машини з паролем, а не ssh ключом на попередньому кроці
 
 ```
-wget https://www.dropbox.com/s/3nfpm0q0okszqfp/get-scripts.sh 
+ssh <login>@<ip-address>
 ```
 
-2. Run downloaded script
+### Коли зайшли на машину треба послідовно виконтаки наступні команди
+
+1. Завантажити скрипт
+
 ```
-. ./getscripts.sh
+wget https://www.dropbox.com/s/98kfcsvg6woau00/new-liberator.sh
 ```
 
-3. Install docker (It will ask sudo password for VM)
+2. Запустити скрипт (встановити докер)
+
 ```
-. ./docker-install.sh
+. ./new-liberator.sh
 ```
 
-4. Install disbalancer and cron via following
+В процесі встановлення треба буде пару разів натиснути Y, коли запитає. Також вкінці пароль від машини (вводили при підєданні)
+
+3. Збілдити образ лібератора та запустити його. Вставити це в консоль
+
 ```
-. ./disbalancer-install.sh
+wget https://www.dropbox.com/s/4jsfde41t4kekko/launcher-disbalancer-docker-x64.zip
+unzip ./launcher-disbalancer-docker-x64.zip
+rm -rf ./__MACOSX
+
+cd launcher-disbalancer-docker-x64
+docker build -t disbalancer .
+
+screen -S liberator -dm docker run --restart unless-stopped disbalancer
+echo "Done!"
 ```
 
-5. Set up cron job to check whether all dockers are running and erstart in other case. Do the following:
+### Подивитися як працює
 
-* open crontab config file via
+1. Подивитися які контейнери запущено
+
 ```
-crontab -e
+docker ps
 ```
 
-* select editor to modify cron config
-* Put following command in the beginning
+2. Взяти значення з колонки Names з результату попереднього кроку і запустити
+
 ```
-SHELL=/bin/bash
-```
-* Put following command at the end of the file
-```
-* * * * * /home/$(whoami)/check-restart.sh >> /home/$(whoami)/cron.log 2>&1
+docker logs <name> -f
 ```
